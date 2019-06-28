@@ -28,3 +28,8 @@ function addTask(e) {
   taskList.appendChild(li);
   setTaskInLS(taskText);
 }
+
+function removeTask(e) {
+  if (!taskList.firstChild) return;
+  taskList.lastChild.remove();
+}
