@@ -1,7 +1,37 @@
 $font-family: 'Chewy', cursive;
 
 @mixin flexbox-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body,
+html {
+  height: 100%;
+  display: grid;
+}
+
+.btn {
+  font-family: $font-family;
+}
+
+.blocktext {
+  @include flexbox-center;
+  font-family: $font-family;
+  font-size: 2em;
+
+  p {
+    text-align: center;
+  }
+}
+
+.card-body {
+  .row {
+    @include flexbox-center;
+  }
+}
+
+.list-group-item {
+  @include flexbox-center;
 }
