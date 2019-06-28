@@ -32,10 +32,54 @@ function addTask(e) {
 function removeTask(e) {
   if (!taskList.firstChild) return;
   taskList.lastChild.remove();
+  removeTaskFromLS(e.target.parentElement.parentElement);
 }
 
 function clearTasks() {
   while (taskList.firstChild) {
     taskList.removeChild(taskList.firstChild);
   }
+  clearTasksFromLS();
+}
+
+function getTasks() {
+  let tasks;
+  if (localStorage.getItem('tasks') === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+  tasks.forEach(function(task) {
+    const li = document.createElement('li');
+    li.className = 'list-group-item';
+    li.appendChild(document.createTextNode(task));
+    taskList.appendChild(li);
+  });
+}
+
+function setTaskInLS(task) {
+  let tasks;
+  if (localStorage.getItem('tasks') === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+  tasks.push(task);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function removeTaskFromLS(taskItem) {
+  let tasks;
+  if (localStorage.getItem('tasks') === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+  tasks.pop();
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function clearTasksFromLS() {
+  localStorage.clear();
 }
