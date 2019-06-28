@@ -12,3 +12,19 @@ function loadEventListeners() {
   removeBtn.addEventListener('click', removeTask);
   clearBtn.addEventListener('click', clearTasks);
 }
+
+function getNextTaskNumber() {
+  const taskListItems = document.querySelectorAll('.list-group-item');
+  if (!taskListItems) return 1;
+
+  return taskListItems.length + 1;
+}
+
+function addTask(e) {
+  const li = document.createElement('li');
+  li.className = 'list-group-item';
+  const taskText = taskTemplate + getNextTaskNumber();
+  li.appendChild(document.createTextNode(taskText));
+  taskList.appendChild(li);
+  setTaskInLS(taskText);
+}
