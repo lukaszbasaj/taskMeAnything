@@ -33,3 +33,9 @@ function removeTask(e) {
   if (!taskList.firstChild) return;
   taskList.lastChild.remove();
 }
+
+function clearTasks() {
+  while (taskList.firstChild) {
+    taskList.removeChild(taskList.firstChild);
+  }
+}
