@@ -12,3 +12,12 @@ function loadEventListeners() {
   removeBtn.addEventListener('click', removeTask);
   clearBtn.addEventListener('click', clearTasks);
 }
+
+function addTask(e) {
+  const li = document.createElement('li');
+  li.className = 'list-group-item';
+  const taskText = taskTemplate;
+  li.appendChild(document.createTextNode(taskText));
+  taskList.appendChild(li);
+  setTaskInLS(taskText);
+}
